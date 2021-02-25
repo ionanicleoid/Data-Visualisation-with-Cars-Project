@@ -1,0 +1,100 @@
+---
+title: "Data Visualisation with Cars Project"
+output:
+
+---
+
+###Data Visualisation with Cars Project
+
+This project will use data visualisation techniques to analyse statistics in for cars. 
+
+The data was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973–74 models). 
+
+These columns include mpg representing miles/(US) gallon, cyl showing the	number of cylinders
+and disp representing	displacement.	hp is the gross horsepower, drat	shows the rear axle ratio
+and wt represents	weight in 1000 lbs. qsec is	1/4 mile time, vs	is an engine with 0 = V-shaped, 1 = straight.	am shows the transmission with 0 = automatic and 1 = manual. The number of forward gears is shown as gear with carb as the	number of carburetors.
+
+##Explore the Data
+
+First, the mtcars data set will be loaded from R and the first fives lines of data can be viewed below.
+
+```{r}
+#load datasets
+library(datasets)
+
+#load mtcars
+data("mtcars")
+
+#view first 5 lines
+head(mtcars)
+
+```
+
+This data frame with 32 observations on 11 numerical variables.
+
+##Automatic Cars
+
+This project will put a focus on automatic cars. Therefore, a frequency count will be created with the automatic(am) column and reflected in a pie chart.
+```{r}
+
+#create table of the automatic column
+counts <- table(mtcars$am)
+
+#view pie chart
+pie(counts)
+```
+We can see that the as 0 represents automatics and 1 represents manuals that the majority of cars in the data set are automatic.
+
+##Correlation
+To understand the data set further a correlation plot will be constructed using all the variables. 
+
+```{r}
+library(ggplot2)
+library(corrplot)
+corrplot(cor(mtcars),
+          type="lower", 
+          method="color", 
+         addCoef.col="black", 
+         diag=FALSE, 
+         tl.col="black",
+         tl.srt=45, 
+         col=heat.colors(10))
+```
+
+From the correlation plot, there is a strong positive correlation between automatic cars and miles per gallon(mpg) and rear axle ratio (drat.) With a negative correlation between automatics and weight by 1000 lbs(wt.)This suggests that automatic cars do have influence the miles per gallon and the rear axle ratio. 
+
+This is what we will investigate further. 
+
+##Boxplots
+
+The miles per gallon of a car will be shown below. 
+
+```{r}
+#load the packages
+library(ggplot2)
+library(gridExtra)
+library(tidyverse)
+
+#create the boxplot
+ggplot(mtcars, aes(x=am, y=mpg, color="age_group"))+
+geom_boxplot() +
+ggtitle("Miles per Gallon vs. Automatic")
+
+
+```
+The rear axle ratio of a car will be shown below as a boxlpot. 
+
+```{r}
+#load the packages
+library(ggplot2)
+library(gridExtra)
+library(tidyverse)
+
+#create the boxplot
+ggplot(mtcars, aes(x=am, y=drat, color="age_group"))+
+geom_boxplot() +
+ggtitle("Rear Axle Ratio vs. Automatic")
+
+```
+
+
