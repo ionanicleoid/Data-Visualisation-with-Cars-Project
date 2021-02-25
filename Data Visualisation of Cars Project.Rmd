@@ -80,21 +80,9 @@ ggplot(mtcars, aes(x=am, y=mpg, color="age_group"))+
 geom_boxplot() +
 ggtitle("Miles per Gallon vs. Automatic")
 
-
 ```
-The rear axle ratio of a car will be shown below as a boxlpot. 
+We can see that the mean and average miles per hour in the data set is 19. The interquartile range is between 15 and 22.
 
-```{r}
-#load the packages
-library(ggplot2)
-library(gridExtra)
-library(tidyverse)
 
-#create the boxplot
-ggplot(mtcars, aes(x=am, y=drat, color="age_group"))+
-geom_boxplot() +
-ggtitle("Rear Axle Ratio vs. Automatic")
-
-```
 
 
